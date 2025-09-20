@@ -12,7 +12,6 @@ const submitBtn = document.getElementById('submit-btn');
 const errorMessage = document.getElementById('error-message');
 const hintText = document.getElementById('hint-text');
 const closeLetterBtn = document.getElementById('close-letter-btn');
-const sunflowerBtn = document.getElementById('sunflower-btn');
 const resetViewBtn = document.getElementById('reset-view-btn');
 const loading3D = document.getElementById('loading-3d');
 const kissGif = document.getElementById('kiss-gif');
@@ -28,9 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
     setupCodeInputs();
     setupSubmitButton();
     setupLetterScreen();
-    setupSunflowerScreen();
     setupHeartEffect();
     setupMusic();
+    setupNumericKeyboard();
 });
 
 // Función de carga con barra de progreso
@@ -524,104 +523,100 @@ function createHeartEffect(event) {
     }, 2000);
 }
 
-// Funciones para la ventana de regalo de flor
-function setupSunflowerScreen() {
-    if (sunflowerBtn) {
-        sunflowerBtn.addEventListener('click', function() {
-            // Ir a la ventana del regalo de flor
-            letterScreen.classList.remove('active');
-            document.getElementById('sunflower-screen').classList.add('active');
-            
-            // Iniciar el sistema de flores
-            startSunflowerApp();
-        });
-    }
-    
-    // Botón para volver a la carta
-    const backToLetterBtn = document.getElementById('back-to-letter-btn');
-    if (backToLetterBtn) {
-        backToLetterBtn.addEventListener('click', function() {
-            // Volver a la carta
-            document.getElementById('sunflower-screen').classList.remove('active');
-            letterScreen.classList.add('active');
-        });
-    }
-    
-    // Botón para reiniciar la flor
-    const restartFlowerBtn = document.getElementById('restart-flower-btn');
-    if (restartFlowerBtn) {
-        restartFlowerBtn.addEventListener('click', function() {
-            restartFlowerAnimation();
-        });
-    }
-}
 
-function startSunflowerApp() {
-    // Inicializar el sistema de flores y abejitas
-    initFlowerSystem();
-    initBees();
-}
-
-function initFlowerSystem() {
-    // Las animaciones CSS se ejecutan automáticamente
-    console.log('Regalo de flor iniciado');
-}
-
-function initBees() {
-    // Configurar las abejitas interactivas
-    const bees = document.querySelectorAll('.bee');
+// Configuración del teclado numérico
+function setupNumericKeyboard() {
+    const keyboardKeys = document.querySelectorAll('.keyboard-key[data-number]');
+    const clearKey = document.getElementById('clear-key');
+    const backspaceKey = document.getElementById('backspace-key');
     
-    bees.forEach((bee, index) => {
-        // Añadir evento de click para que se caigan
-        bee.addEventListener('click', function() {
-            makeBeeFall(bee);
+    // Teclas numéricas
+    keyboardKeys.forEach(key => {
+        key.addEventListener('click', function() {
+            const number = this.getAttribute('data-number');
+            addNumberToInput(number);
+            addKeyPressEffect(this);
         });
-        
-        // Asegurar que vuelvan a volar después de un tiempo
-        setInterval(() => {
-            if (!bee.classList.contains('fallen') && !bee.classList.contains('recovering')) {
-                // La abeja está volando normalmente
-            }
-        }, 1000);
     });
+    
+    // Tecla de borrar todo
+    if (clearKey) {
+        clearKey.addEventListener('click', function() {
+            clearAllInputs();
+            addKeyPressEffect(this);
+        });
+    }
+    
+    // Tecla de retroceso
+    if (backspaceKey) {
+        backspaceKey.addEventListener('click', function() {
+            removeLastNumber();
+            addKeyPressEffect(this);
+        });
+    }
 }
 
-function makeBeeFall(bee) {
-    // Remover clases anteriores
-    bee.classList.remove('recovering');
-    
-    // Añadir clase para que se caiga
-    bee.classList.add('fallen');
-    
-    // Después de 2 segundos, hacer que se recupere
+// Añadir número al input
+function addNumberToInput(number) {
+    const currentIndex = getCurrentInputIndex();
+    if (currentIndex < codeInputs.length) {
+        codeInputs[currentIndex].value = number;
+        codeInputs[currentIndex].classList.add('filled');
+        
+        // Verificar si se completó el código
+        checkCodeCompletion();
+        
+        // Si se completaron los 4 números, verificar automáticamente
+        if (isCodeComplete) {
+            setTimeout(() => {
+                verifyCode();
+            }, 500); // Pequeño delay para que se vea el último número
+        } else if (currentIndex < codeInputs.length - 1) {
+            // Ir al siguiente input si no es el último
+            setTimeout(() => {
+                codeInputs[currentIndex + 1].focus();
+            }, 100);
+        }
+    }
+}
+
+// Obtener el índice del input actual
+function getCurrentInputIndex() {
+    for (let i = 0; i < codeInputs.length; i++) {
+        if (!codeInputs[i].value) {
+            return i;
+        }
+    }
+    return codeInputs.length - 1; // Si todos están llenos, usar el último
+}
+
+// Borrar todos los inputs
+function clearAllInputs() {
+    codeInputs.forEach(input => {
+        input.value = '';
+        input.classList.remove('filled');
+    });
+    checkCodeCompletion();
+    codeInputs[0].focus();
+}
+
+// Remover el último número
+function removeLastNumber() {
+    for (let i = codeInputs.length - 1; i >= 0; i--) {
+        if (codeInputs[i].value) {
+            codeInputs[i].value = '';
+            codeInputs[i].classList.remove('filled');
+            break;
+        }
+    }
+    checkCodeCompletion();
+}
+
+// Efecto visual al presionar una tecla
+function addKeyPressEffect(key) {
+    key.classList.add('pressed');
     setTimeout(() => {
-        bee.classList.remove('fallen');
-        bee.classList.add('recovering');
-        
-        // Después de la animación de recuperación, remover la clase
-        setTimeout(() => {
-            bee.classList.remove('recovering');
-        }, 2000);
-    }, 2000);
+        key.classList.remove('pressed');
+    }, 300);
 }
 
-function restartFlowerAnimation() {
-    // Reiniciar las animaciones de la flor
-    const flower = document.querySelector('.main-flower');
-    const bees = document.querySelectorAll('.bee');
-    
-    // Reiniciar la flor
-    flower.style.animation = 'none';
-    flower.offsetHeight; // Trigger reflow
-    flower.style.animation = null;
-    
-    // Reiniciar las abejitas
-    bees.forEach(bee => {
-        bee.classList.remove('fallen', 'recovering');
-        bee.style.animation = 'none';
-        bee.offsetHeight; // Trigger reflow
-        bee.style.animation = null;
-    });
-    
-    console.log('Animación de flor reiniciada');
-}

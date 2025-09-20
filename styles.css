@@ -9,7 +9,8 @@ body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 25%, #ffa8c5 50%, #ffb3d1 75%, #ffc0dd 100%);
     min-height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     position: relative;
 }
 
@@ -49,6 +50,8 @@ body::before {
     visibility: hidden;
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .screen.active {
@@ -348,7 +351,9 @@ body::before {
     border: 2px solid rgba(255, 107, 157, 0.1);
     animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 90vh;
 }
 
 .code-container::before {
@@ -1165,6 +1170,405 @@ body::before {
 
 .sunflower-btn:active {
     transform: translateY(0);
+}
+
+/* Teclado numérico estilizado */
+.numeric-keyboard {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.keyboard-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.keyboard-key {
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+.keyboard-key::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(145deg, rgba(255, 182, 193, 0.1), rgba(255, 105, 180, 0.1));
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    border-radius: 20px;
+}
+
+.keyboard-key:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 12px 24px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.keyboard-key:hover::before {
+    opacity: 1;
+}
+
+.keyboard-key:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.keyboard-key:active::before {
+    background: linear-gradient(145deg, rgba(255, 182, 193, 0.3), rgba(255, 105, 180, 0.3));
+}
+
+.key-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.key-letters {
+    font-size: 0.7rem;
+    color: #666;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.key-icon {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+.key-label {
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 600;
+}
+
+/* Teclas especiales */
+.keyboard-key.special-key {
+    background: linear-gradient(145deg, #ff6b9d, #ff8fab);
+    color: white;
+}
+
+.keyboard-key.special-key .key-label {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.keyboard-key.special-key::before {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+.keyboard-key.special-key:hover {
+    box-shadow: 
+        0 12px 24px rgba(255, 107, 157, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.keyboard-key.special-key:active::before {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+}
+
+/* Efecto de pulso cuando se presiona */
+.keyboard-key.pressed {
+    animation: keyPress 0.3s ease;
+}
+
+@keyframes keyPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+/* Efecto de brillo para teclas especiales */
+.keyboard-key.special-key::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    opacity: 0;
+}
+
+.keyboard-key.special-key:hover::after {
+    animation: shine 0.6s ease;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+}
+
+/* Responsive para el teclado */
+@media (max-width: 768px) {
+    .numeric-keyboard {
+        max-width: 280px;
+        gap: 10px;
+    }
+    
+    .keyboard-row {
+        gap: 10px;
+    }
+    
+    .keyboard-key {
+        width: 70px;
+        height: 70px;
+        border-radius: 18px;
+    }
+    
+    .key-number {
+        font-size: 1.6rem;
+    }
+    
+    .key-letters {
+        font-size: 0.65rem;
+    }
+    
+    .key-icon {
+        font-size: 1.3rem;
+    }
+    
+    .key-label {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .numeric-keyboard {
+        max-width: 260px;
+        gap: 8px;
+    }
+    
+    .keyboard-row {
+        gap: 8px;
+    }
+    
+    .keyboard-key {
+        width: 65px;
+        height: 65px;
+        border-radius: 16px;
+    }
+    
+    .key-number {
+        font-size: 1.4rem;
+    }
+    
+    .key-letters {
+        font-size: 0.6rem;
+    }
+    
+    .key-icon {
+        font-size: 1.2rem;
+    }
+    
+    .key-label {
+        font-size: 0.7rem;
+    }
+}
+
+/* FLOR SIMPLE AL FINAL DE LA CARTA */
+.simple-flower {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+    padding: 1rem;
+}
+
+.flower-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: flowerGrow 2s ease-out;
+}
+
+@keyframes flowerGrow {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.flower-stem {
+    width: 8px;
+    height: 80px;
+    background: linear-gradient(to bottom, #4a7c59, #2d5a3d);
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.flower-center {
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, #8B4513, #654321);
+    border-radius: 50%;
+    position: relative;
+    z-index: 3;
+    margin-bottom: -20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    animation: centerPulse 3s ease-in-out infinite;
+}
+
+@keyframes centerPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.flower-petals {
+    position: relative;
+    z-index: 2;
+    margin-bottom: -20px;
+}
+
+.petal {
+    position: absolute;
+    width: 25px;
+    height: 50px;
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform-origin: bottom center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    animation: petalSway 4s ease-in-out infinite;
+}
+
+.petal:nth-child(1) { transform: rotate(0deg) translateY(-20px); animation-delay: 0s; }
+.petal:nth-child(2) { transform: rotate(45deg) translateY(-20px); animation-delay: 0.5s; }
+.petal:nth-child(3) { transform: rotate(90deg) translateY(-20px); animation-delay: 1s; }
+.petal:nth-child(4) { transform: rotate(135deg) translateY(-20px); animation-delay: 1.5s; }
+.petal:nth-child(5) { transform: rotate(180deg) translateY(-20px); animation-delay: 2s; }
+.petal:nth-child(6) { transform: rotate(225deg) translateY(-20px); animation-delay: 2.5s; }
+.petal:nth-child(7) { transform: rotate(270deg) translateY(-20px); animation-delay: 3s; }
+.petal:nth-child(8) { transform: rotate(315deg) translateY(-20px); animation-delay: 3.5s; }
+
+@keyframes petalSway {
+    0%, 100% { transform: rotate(var(--rotation)) translateY(-20px) rotate(0deg); }
+    25% { transform: rotate(var(--rotation)) translateY(-20px) rotate(2deg); }
+    75% { transform: rotate(var(--rotation)) translateY(-20px) rotate(-2deg); }
+}
+
+.flower-leaves {
+    position: relative;
+    z-index: 1;
+}
+
+.leaf {
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    background: linear-gradient(45deg, #4a7c59, #2d5a3d);
+    border-radius: 50% 0 50% 0;
+    top: 20px;
+    animation: leafSway 3s ease-in-out infinite;
+}
+
+.leaf.left {
+    left: -15px;
+    transform: rotate(-30deg);
+    animation-delay: 0s;
+}
+
+.leaf.right {
+    right: -15px;
+    transform: rotate(30deg);
+    animation-delay: 1.5s;
+}
+
+@keyframes leafSway {
+    0%, 100% { transform: rotate(var(--rotation)) scale(1); }
+    50% { transform: rotate(var(--rotation)) scale(1.1); }
+}
+
+/* Responsive para la flor */
+@media (max-width: 768px) {
+    .simple-flower {
+        margin: 1.5rem 0;
+    }
+    
+    .flower-stem {
+        width: 6px;
+        height: 60px;
+    }
+    
+    .flower-center {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .petal {
+        width: 20px;
+        height: 40px;
+    }
+    
+    .leaf {
+        width: 15px;
+        height: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .simple-flower {
+        margin: 1rem 0;
+    }
+    
+    .flower-stem {
+        width: 5px;
+        height: 50px;
+    }
+    
+    .flower-center {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .petal {
+        width: 18px;
+        height: 35px;
+    }
+    
+    .leaf {
+        width: 12px;
+        height: 20px;
+    }
 }
 
 

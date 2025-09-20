@@ -6,7 +6,6 @@
     <meta name="theme-color" content="#ff6b9d">
     <title>💕 Tu Regalo Especial</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="flower-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
     
 </head>
@@ -36,11 +35,72 @@
             
             <div class="code-input-container">
                 <div class="code-inputs">
-                    <input type="text" class="code-input" maxlength="1" data-index="0">
-                    <input type="text" class="code-input" maxlength="1" data-index="1">
-                    <input type="text" class="code-input" maxlength="1" data-index="2">
-                    <input type="text" class="code-input" maxlength="1" data-index="3">
+                    <input type="text" class="code-input" maxlength="1" data-index="0" readonly>
+                    <input type="text" class="code-input" maxlength="1" data-index="1" readonly>
+                    <input type="text" class="code-input" maxlength="1" data-index="2" readonly>
+                    <input type="text" class="code-input" maxlength="1" data-index="3" readonly>
                 </div>
+                
+                <!-- Teclado numérico estilizado -->
+                <div class="numeric-keyboard">
+                    <div class="keyboard-row">
+                        <button type="button" class="keyboard-key" data-number="1">
+                            <span class="key-number">1</span>
+                            <span class="key-letters"></span>
+                        </button>
+                        <button type="button" class="keyboard-key" data-number="2">
+                            <span class="key-number">2</span>
+                            <span class="key-letters">ABC</span>
+                        </button>
+                        <button type="button" class="keyboard-key" data-number="3">
+                            <span class="key-number">3</span>
+                            <span class="key-letters">DEF</span>
+                        </button>
+                    </div>
+                    <div class="keyboard-row">
+                        <button type="button" class="keyboard-key" data-number="4">
+                            <span class="key-number">4</span>
+                            <span class="key-letters">GHI</span>
+                        </button>
+                        <button type="button" class="keyboard-key" data-number="5">
+                            <span class="key-number">5</span>
+                            <span class="key-letters">JKL</span>
+                        </button>
+                        <button type="button" class="keyboard-key" data-number="6">
+                            <span class="key-number">6</span>
+                            <span class="key-letters">MNO</span>
+                        </button>
+                    </div>
+                    <div class="keyboard-row">
+                        <button type="button" class="keyboard-key" data-number="7">
+                            <span class="key-number">7</span>
+                            <span class="key-letters">PQRS</span>
+                        </button>
+                        <button type="button" class="keyboard-key" data-number="8">
+                            <span class="key-number">8</span>
+                            <span class="key-letters">TUV</span>
+                        </button>
+                        <button type="button" class="keyboard-key" data-number="9">
+                            <span class="key-number">9</span>
+                            <span class="key-letters">WXYZ</span>
+                        </button>
+                    </div>
+                    <div class="keyboard-row">
+                        <button type="button" class="keyboard-key special-key" id="clear-key">
+                            <span class="key-icon">🗑️</span>
+                            <span class="key-label">Borrar</span>
+                        </button>
+                        <button type="button" class="keyboard-key" data-number="0">
+                            <span class="key-number">0</span>
+                            <span class="key-letters"></span>
+                        </button>
+                        <button type="button" class="keyboard-key special-key" id="backspace-key">
+                            <span class="key-icon">⌫</span>
+                            <span class="key-label">Atrás</span>
+                        </button>
+                    </div>
+                </div>
+                
                 <div class="error-message" id="error-message"></div>
             </div>
 
@@ -99,80 +159,15 @@
                 </div>
             </div>
             
+         
+            
             <button class="close-letter-btn" id="close-letter-btn">
                 <span>Cerrar Carta</span>
                 <span>💌</span>
             </button>
             
-            <!-- Botón para ir a la última sorpresa -->
-            <div class="sunflower-bouquet">
-                <button class="sunflower-btn" id="sunflower-btn">
-                    <span>Ver tu Última Sorpresa</span>
-                    <span>🌻</span>
-                </button>
-            </div>
-            
     </div>
 
-    <!-- Ventana de Regalo de Flor - Creativa y Funcional -->
-    <div id="sunflower-screen" class="screen">
-        <div class="flower-gift-container">
-            <!-- Fondo mágico -->
-            <div class="magic-background">
-                <div class="gradient-bg"></div>
-                <div class="sparkles"></div>
-            </div>
-            
-            <!-- Contenido principal -->
-            <div class="gift-content">
-                <!-- Título principal -->
-                <div class="gift-title">
-                    <h1>🌻 Tu Regalo Especial 🌻</h1>
-                    <p>Una flor eterna para ti</p>
-                </div>
-                
-                <!-- Flor principal -->
-                <div class="main-flower">
-                    <div class="flower-center">
-                        <div class="center-dot"></div>
-                    </div>
-                    <div class="flower-petals">
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                    </div>
-                    <div class="flower-stem"></div>
-                </div>
-                
-                <!-- Abejitas voladoras -->
-                <div class="bees-container">
-                    <div class="bee" id="bee1"></div>
-                    <div class="bee" id="bee2"></div>
-                    <div class="bee" id="bee3"></div>
-                </div>
-                
-                <!-- Mensaje especial -->
-                <div class="special-message">
-                    <p>Como esta flor, mi amor por ti florece cada día</p>
-                </div>
-            </div>
-            
-            <!-- Botones de control -->
-            <div class="control-buttons">
-                <button class="control-btn" id="back-to-letter-btn">
-                    <span>💌 Volver a la Carta</span>
-                </button>
-                <button class="control-btn" id="restart-flower-btn">
-                    <span>🌻 Ver de Nuevo</span>
-                </button>
-            </div>
-        </div>
-    </div>
 
     <!-- Audio para la canción -->
     <audio id="background-music" preload="auto">
