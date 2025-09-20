@@ -1,0 +1,439 @@
+/* Regalo de Flor - Diseño Creativo y Funcional */
+
+/* Contenedor principal */
+.flower-gift-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fondo mágico */
+.magic-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.gradient-bg {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7209b7 100%);
+    animation: gradientShift 10s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { 
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7209b7 100%);
+    }
+    50% { 
+        background: linear-gradient(135deg, #7209b7 0%, #533483 25%, #0f3460 50%, #16213e 75%, #1a1a2e 100%);
+    }
+}
+
+.sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: sparkle 3s linear infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Contenido principal */
+.gift-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: white;
+}
+
+/* Título */
+.gift-title {
+    margin-bottom: 2rem;
+}
+
+.gift-title h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: #FFD700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    font-family: 'Dancing Script', cursive;
+    animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+.gift-title p {
+    font-size: 1.2rem;
+    color: #FFE55C;
+    text-shadow: 0 0 10px rgba(255, 229, 92, 0.6);
+    font-family: 'Poppins', sans-serif;
+}
+
+@keyframes titleGlow {
+    0% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+    100% { text-shadow: 0 0 30px rgba(255, 215, 0, 1), 0 0 40px rgba(255, 215, 0, 0.6); }
+}
+
+/* Flor principal */
+.main-flower {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Centro de la flor */
+.flower-center {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #8B4513 0%, #D2691E 50%, #CD853F 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    animation: centerPulse 2s ease-in-out infinite;
+    z-index: 20;
+}
+
+.center-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: #D2691E;
+    border-radius: 50%;
+}
+
+@keyframes centerPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Pétalos */
+.flower-petals {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 160px;
+}
+
+.petal {
+    position: absolute;
+    width: 50px;
+    height: 80px;
+    background: linear-gradient(45deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform-origin: center bottom;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    animation: petalSway 3s ease-in-out infinite;
+}
+
+.petal:nth-child(1) { transform: rotate(0deg) translateY(-80px); animation-delay: 0s; }
+.petal:nth-child(2) { transform: rotate(45deg) translateY(-80px); animation-delay: 0.2s; }
+.petal:nth-child(3) { transform: rotate(90deg) translateY(-80px); animation-delay: 0.4s; }
+.petal:nth-child(4) { transform: rotate(135deg) translateY(-80px); animation-delay: 0.6s; }
+.petal:nth-child(5) { transform: rotate(180deg) translateY(-80px); animation-delay: 0.8s; }
+.petal:nth-child(6) { transform: rotate(225deg) translateY(-80px); animation-delay: 1s; }
+.petal:nth-child(7) { transform: rotate(270deg) translateY(-80px); animation-delay: 1.2s; }
+.petal:nth-child(8) { transform: rotate(315deg) translateY(-80px); animation-delay: 1.4s; }
+
+@keyframes petalSway {
+    0%, 100% { transform: rotate(var(--rotation, 0deg)) translateY(-80px) rotate(0deg); }
+    50% { transform: rotate(var(--rotation, 0deg)) translateY(-80px) rotate(5deg); }
+}
+
+/* Tallo */
+.flower-stem {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 120px;
+    background: linear-gradient(to bottom, #228B22 0%, #32CD32 50%, #90EE90 100%);
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(34, 139, 34, 0.5);
+    animation: stemGrow 2s ease-out;
+}
+
+@keyframes stemGrow {
+    0% { height: 0; }
+    100% { height: 120px; }
+}
+
+/* Abejitas voladoras */
+.bees-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 15;
+}
+
+.bee {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #FFD700;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: all 0.3s ease;
+    animation: beeFly 8s linear infinite;
+}
+
+.bee::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: beeWings 0.2s infinite alternate;
+}
+
+.bee::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: #000;
+    border-radius: 50%;
+}
+
+.bee:nth-child(1) {
+    animation-delay: 0s;
+    animation-duration: 10s;
+}
+
+.bee:nth-child(2) {
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.bee:nth-child(3) {
+    animation-delay: 4s;
+    animation-duration: 9s;
+}
+
+@keyframes beeFly {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(200px, -100px); }
+    50% { transform: translate(400px, 50px); }
+    75% { transform: translate(200px, -150px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes beeWings {
+    0% { transform: translateX(-50%) scaleY(1); }
+    100% { transform: translateX(-50%) scaleY(0.3); }
+}
+
+/* Efecto cuando se toca la abeja */
+.bee.fallen {
+    animation: beeFall 1s ease-in forwards;
+}
+
+@keyframes beeFall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(100px) rotate(180deg); }
+}
+
+.bee.recovering {
+    animation: beeRecover 2s ease-out forwards;
+}
+
+@keyframes beeRecover {
+    0% { transform: translateY(100px) rotate(180deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* Mensaje especial */
+.special-message {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.special-message p {
+    font-size: 1.1rem;
+    color: #FFE55C;
+    text-shadow: 0 0 10px rgba(255, 229, 92, 0.6);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    animation: messageFloat 3s ease-in-out infinite;
+}
+
+@keyframes messageFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Botones de control */
+.control-buttons {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 20;
+}
+
+.control-btn {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+    font-family: 'Poppins', sans-serif;
+}
+
+.control-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(255, 215, 0, 0.4);
+}
+
+.control-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .gift-title h1 {
+        font-size: 2.5rem;
+    }
+    
+    .main-flower {
+        width: 150px;
+        height: 250px;
+    }
+    
+    .flower-center {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .center-dot {
+        width: 15px;
+        height: 15px;
+    }
+    
+    .flower-petals {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .petal {
+        width: 40px;
+        height: 60px;
+    }
+    
+    .petal:nth-child(1) { transform: rotate(0deg) translateY(-60px); }
+    .petal:nth-child(2) { transform: rotate(45deg) translateY(-60px); }
+    .petal:nth-child(3) { transform: rotate(90deg) translateY(-60px); }
+    .petal:nth-child(4) { transform: rotate(135deg) translateY(-60px); }
+    .petal:nth-child(5) { transform: rotate(180deg) translateY(-60px); }
+    .petal:nth-child(6) { transform: rotate(225deg) translateY(-60px); }
+    .petal:nth-child(7) { transform: rotate(270deg) translateY(-60px); }
+    .petal:nth-child(8) { transform: rotate(315deg) translateY(-60px); }
+    
+    .flower-stem {
+        height: 100px;
+    }
+    
+    .control-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .control-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .gift-title h1 {
+        font-size: 2rem;
+    }
+    
+    .main-flower {
+        width: 120px;
+        height: 200px;
+    }
+    
+    .flower-center {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .center-dot {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .flower-petals {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .petal {
+        width: 30px;
+        height: 50px;
+    }
+    
+    .petal:nth-child(1) { transform: rotate(0deg) translateY(-50px); }
+    .petal:nth-child(2) { transform: rotate(45deg) translateY(-50px); }
+    .petal:nth-child(3) { transform: rotate(90deg) translateY(-50px); }
+    .petal:nth-child(4) { transform: rotate(135deg) translateY(-50px); }
+    .petal:nth-child(5) { transform: rotate(180deg) translateY(-50px); }
+    .petal:nth-child(6) { transform: rotate(225deg) translateY(-50px); }
+    .petal:nth-child(7) { transform: rotate(270deg) translateY(-50px); }
+    .petal:nth-child(8) { transform: rotate(315deg) translateY(-50px); }
+    
+    .flower-stem {
+        height: 80px;
+    }
+}

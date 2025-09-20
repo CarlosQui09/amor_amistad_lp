@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ff6b9d">
+    <title>💕 Tu Regalo Especial</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="flower-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <!-- Pantalla de Carga -->
+    <div id="loading-screen" class="screen active">
+        <div class="loading-container">
+            <div class="love-character">
+            </div>
+            <h2 class="loading-title">Cargando tu detalle con mucho amor</h2>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-text" id="progress-text">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla de Código -->
+    <div id="code-screen" class="screen">
+        <div class="code-container">
+            <div class="code-header">
+                <h1>💖CON MUCHO AMOR PARA MI PRINCESA</h1>
+                <p>Ingresa el código de 4 dígitos para acceder a tu sorpresa</p>
+            </div>
+            
+            <div class="code-input-container">
+                <div class="code-inputs">
+                    <input type="text" class="code-input" maxlength="1" data-index="0">
+                    <input type="text" class="code-input" maxlength="1" data-index="1">
+                    <input type="text" class="code-input" maxlength="1" data-index="2">
+                    <input type="text" class="code-input" maxlength="1" data-index="3">
+                </div>
+                <div class="error-message" id="error-message"></div>
+            </div>
+
+            <button class="submit-btn" id="submit-btn" disabled>
+                <span class="btn-text">Abrir Regalo</span>
+                <span class="btn-icon">💝</span>
+            </button>
+
+            <div class="hint">
+                <p>💡 Pista: <span id="hint-text">El código es una fecha especial</span></p>
+            </div>
+        </div>
+        
+        <!-- GIF de beso cuando se ingresa código correcto -->
+        <div id="kiss-gif" class="kiss-gif-container">
+            <img src="gif/beso.gif" alt="Beso de amor" class="kiss-gif">
+        </div>
+    </div>
+
+    <!-- Pantalla de Carta -->
+    <div id="letter-screen" class="screen">
+        <div class="letter-container">
+            <div class="letter-envelope">
+                <div class="letter-paper">
+                    <div class="letter-header">
+                        <div class="letter-decoration">
+                            <div class="heart-decoration">💕</div>
+                            <div class="heart-decoration">💖</div>
+                            <div class="heart-decoration">💗</div>
+                        </div>
+                        <h1 class="letter-title">Feliz Dia del amor y la amistad</h1>
+                        <div class="letter-date">20 de septiembre, 2025</div>
+                    </div>
+                    
+                    <div class="letter-content">
+                        <p class="letter-greeting typing-text" data-text="Mi amor,"></p>
+
+                        <p class="letter-paragraph typing-text" data-text="Hoy, en esta fecha tan especial, quiero que sepas que, a pesar de todo, siempre te amaré con toda la fuerza de mi corazón. Ahora que estás lejos, siento aún más el vacío de tu partida, pero confío en que es lo mejor para ti."></p>
+                        
+                        <p class="letter-paragraph typing-text" data-text="Quiero recordarte lo increíble y única que eres: una luchadora incansable, con una sonrisa que ilumina cualquier lugar. Eres la mujer más hermosa del mundo y siempre serás mi princesa."></p>
+                        
+                        <p class="letter-paragraph typing-text" data-text="Deseo que tengas días llenos de alegría, que la vida te sonría siempre y que recibas muchas bendiciones. Nunca olvides que estaré deseándote lo mejor, porque eres y serás el amor de mi vida. Con todo mi cariño, te amo, aunque no estemos juntos."></p>
+                          
+                    </div>
+                    
+                    <!-- GIF de Stitch después del contenido -->
+                    <div class="stitch-gif-container">
+                        <img src="gif/love_stitch.gif" alt="Stitch de amor" class="stitch-gif">
+                    </div>
+                    
+                    <div class="letter-signature">
+                        <p class="letter-closing typing-text" data-text="Con todo mi amor,"></p>
+                        <div class="signature-line"></div>
+                        <p class="letter-name typing-text" data-text="Tu persona especial"></p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="close-letter-btn" id="close-letter-btn">
+                <span>Cerrar Carta</span>
+                <span>💌</span>
+            </button>
+            
+            <!-- Botón para ir a la última sorpresa -->
+            <div class="sunflower-bouquet">
+                <button class="sunflower-btn" id="sunflower-btn">
+                    <span>Ver tu Última Sorpresa</span>
+                    <span>🌻</span>
+                </button>
+            </div>
+            
+    </div>
+
+    <!-- Ventana de Regalo de Flor - Creativa y Funcional -->
+    <div id="sunflower-screen" class="screen">
+        <div class="flower-gift-container">
+            <!-- Fondo mágico -->
+            <div class="magic-background">
+                <div class="gradient-bg"></div>
+                <div class="sparkles"></div>
+            </div>
+            
+            <!-- Contenido principal -->
+            <div class="gift-content">
+                <!-- Título principal -->
+                <div class="gift-title">
+                    <h1>🌻 Tu Regalo Especial 🌻</h1>
+                    <p>Una flor eterna para ti</p>
+                </div>
+                
+                <!-- Flor principal -->
+                <div class="main-flower">
+                    <div class="flower-center">
+                        <div class="center-dot"></div>
+                    </div>
+                    <div class="flower-petals">
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                    </div>
+                    <div class="flower-stem"></div>
+                </div>
+                
+                <!-- Abejitas voladoras -->
+                <div class="bees-container">
+                    <div class="bee" id="bee1"></div>
+                    <div class="bee" id="bee2"></div>
+                    <div class="bee" id="bee3"></div>
+                </div>
+                
+                <!-- Mensaje especial -->
+                <div class="special-message">
+                    <p>Como esta flor, mi amor por ti florece cada día</p>
+                </div>
+            </div>
+            
+            <!-- Botones de control -->
+            <div class="control-buttons">
+                <button class="control-btn" id="back-to-letter-btn">
+                    <span>💌 Volver a la Carta</span>
+                </button>
+                <button class="control-btn" id="restart-flower-btn">
+                    <span>🌻 Ver de Nuevo</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio para la canción -->
+    <audio id="background-music" preload="auto">
+        <source src="cancion/photograph.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
